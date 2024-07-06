@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "@/components/ui/link";
+import { RotateWrapper } from "@/components/ui/rotateWrapper";
 
 const QUARTO_SECONDS = 30;
 export default function Timer() {
@@ -30,7 +31,7 @@ export default function Timer() {
   }, []);
 
   return (
-    <div className={`transform ${flipped ? "rotate-180" : ""}`}>
+    <RotateWrapper flipped={flipped}>
       <div className="flex items-center justify-center h-screen bg-background">
         <div className="flex flex-col items-center gap-8">
           <div
@@ -58,7 +59,7 @@ export default function Timer() {
             Quarto, OK?
           </div>
           <div className="flex items-center gap-2">
-            <Link href={"/result"}>
+            <Link href={{ pathname: "/result", query: { flipped } }}>
               <div className="px-4 py-2 bg-white text-white rounded-lg">👍</div>
             </Link>
             <Button
@@ -74,6 +75,6 @@ export default function Timer() {
           </div>
         </div>
       )}
-    </div>
+    </RotateWrapper>
   );
 }

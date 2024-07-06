@@ -1,11 +1,23 @@
+"use client";
+
 import Link from "@/components/ui/link";
+import { RotateWrapper } from "@/components/ui/rotateWrapper";
+import { useSearchParams } from "next/navigation";
 
 export default function Result() {
+  const searchParams = useSearchParams();
+  const flipped = searchParams.get("flipped");
   return (
-    <div className="flex flex-col h-screen">
-      <div className="flex-1 bg-green-500 flex items-center justify-center transform rotate-180">
+    <RotateWrapper
+      flipped={flipped === "false"}
+      className="flex flex-col h-screen"
+    >
+      <RotateWrapper
+        flipped={true}
+        className="flex-1 bg-green-500 flex items-center justify-center"
+      >
         <h1 className="text-8xl font-bold text-white">Win</h1>
-      </div>
+      </RotateWrapper>
       <div className="flex-1 bg-red-500 flex items-center justify-center">
         <h1 className="text-8xl font-bold text-white">Lose</h1>
       </div>
@@ -19,6 +31,6 @@ export default function Result() {
           </div>
         </div>
       </Link>
-    </div>
+    </RotateWrapper>
   );
 }
