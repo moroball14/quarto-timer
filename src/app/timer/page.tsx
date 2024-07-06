@@ -29,8 +29,8 @@ export default function Timer() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center h-screen bg-background">
-      <div className={`transform ${flipped ? "rotate-180" : ""}`}>
+    <div className={`transform ${flipped ? "rotate-180" : ""}`}>
+      <div className="flex items-center justify-center h-screen bg-background">
         <div className="flex flex-col items-center gap-8">
           <div
             className="bg-card p-8 rounded-full w-48 h-48 shadow-lg cursor-pointer relative"
