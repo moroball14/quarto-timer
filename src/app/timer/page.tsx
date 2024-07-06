@@ -56,6 +56,25 @@ export default function Timer() {
           <div className="bg-card p-8 rounded-lg text-card-foreground text-4xl font-bold text-white">
             Quarto, OK?
           </div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="solid"
+              className="px-4 py-2 bg-white text-white"
+              onClick={() => setShowQuartoOverlay(false)}
+            >
+              👍
+            </Button>
+            <Button
+              variant="solid"
+              className="px-4 py-2 bg-white text-white"
+              onClick={() => {
+                setShowQuartoOverlay(false);
+                handleClick();
+              }}
+            >
+              👎
+            </Button>
+          </div>
         </div>
       )}
     </div>
