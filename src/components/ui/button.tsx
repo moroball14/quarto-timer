@@ -1,11 +1,15 @@
+import { MouseEventHandler } from "react";
+
 export const Button = ({
   variant,
   className,
   children,
+  onClick,
 }: Readonly<{
   variant: "solid" | "outline";
   className?: string;
   children: React.ReactNode;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }>) => {
   return (
     <button
@@ -17,6 +21,7 @@ export const Button = ({
         }
         px-4 py-2 rounded-lg ${className}
       `}
+      onClick={onClick}
     >
       {children}
     </button>

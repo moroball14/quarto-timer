@@ -1,26 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 
 const QUARTO_SECONDS = 30;
 export default function Timer() {
   const [countdown, setCountdown] = useState(QUARTO_SECONDS);
-  // タイマーを上下反転するためのフラグ
   const [flipped, setFlipped] = useState(false);
+  const [showQuartoOverlay, setShowQuartoOverlay] = useState(false);
+
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (countdown > 0) {
+    if (countdown > 0 && !showQuartoOverlay) {
       timer = setInterval(() => {
         setCountdown((prevCount) => prevCount - 1);
       }, 1000);
     }
     return () => clearInterval(timer);
-  }, [countdown]);
-  const handleClick = () => {
+  }, [countdown, showQuartoOverlay]);
+
+  const handleClick = useCallback(() => {
     setCountdown(QUARTO_SECONDS);
     setFlipped((prevFlipped) => !prevFlipped);
-  };
+  }, []);
+
+  const handleQuarto = useCallback(() => {
+    setShowQuartoOverlay(true);
+  }, []);
+
   return (
     <div className="flex items-center justify-center h-screen bg-background">
       <div className={`transform ${flipped ? "rotate-180" : ""}`}>
@@ -34,12 +41,23 @@ export default function Timer() {
             </div>
           </div>
           <div className="ml-2">
-            <Button variant="outline" className="px-4 py-2 bg-black text-white">
+            <Button
+              variant="outline"
+              className="px-4 py-2 bg-black text-white"
+              onClick={handleQuarto}
+            >
               Quarto!
             </Button>
           </div>
         </div>
       </div>
+      {showQuartoOverlay && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-card p-8 rounded-lg text-card-foreground text-4xl font-bold text-white">
+            Quarto, OK?
+          </div>
+        </div>
+      )}
     </div>
   );
 }
