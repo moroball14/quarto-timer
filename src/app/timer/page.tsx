@@ -14,8 +14,6 @@ export default function Timer() {
       timer = setInterval(() => {
         setCountdown((prevCount) => prevCount - 1);
       }, 1000);
-    } else {
-      setCountdown(0);
     }
     return () => clearInterval(timer);
   }, [countdown]);
