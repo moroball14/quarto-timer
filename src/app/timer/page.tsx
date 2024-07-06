@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
+import Link from "@/components/ui/link";
 
 const QUARTO_SECONDS = 30;
 export default function Timer() {
@@ -57,13 +58,9 @@ export default function Timer() {
             Quarto, OK?
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              variant="solid"
-              className="px-4 py-2 bg-white text-white"
-              onClick={() => setShowQuartoOverlay(false)}
-            >
-              👍
-            </Button>
+            <Link href={"/result"}>
+              <div className="px-4 py-2 bg-white text-white rounded-lg">👍</div>
+            </Link>
             <Button
               variant="solid"
               className="px-4 py-2 bg-white text-white"
