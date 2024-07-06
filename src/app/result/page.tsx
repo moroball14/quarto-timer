@@ -3,8 +3,9 @@
 import Link from "@/components/ui/link";
 import { RotateWrapper } from "@/components/ui/rotateWrapper";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function Result() {
+function UnWrappedResult() {
   const searchParams = useSearchParams();
   const flipped = searchParams.get("flipped");
   return (
@@ -32,5 +33,13 @@ export default function Result() {
         </div>
       </Link>
     </RotateWrapper>
+  );
+}
+
+export default function Result() {
+  return (
+    <Suspense>
+      <UnWrappedResult />
+    </Suspense>
   );
 }
